@@ -70,6 +70,34 @@ export default class App extends React.Component {
     return routes;
   }
 
+  renderMainSection = (notes) => {
+
+    const paths = [
+      '/',
+      '/folder/:id'
+    ]
+
+    const routes = paths.map((path, i) => {
+      return (
+        <Route
+          key={i}
+          exact
+          path={path}
+          render={
+            (rprops) => 
+              <MainSection
+                rprops={rprops}
+                notes={notes}
+              />
+          }
+        />
+      );
+    });
+
+    return routes;
+
+  }
+
   render(){
 
     const {folders, notes} = this.state.data;
@@ -81,22 +109,7 @@ export default class App extends React.Component {
           <div className='flex-box-div'>
             {this.renderSideBarRoutes(folders)}
             {this.renderGoBackSideBarRoutes(folders)}
-            <Route 
-              exact
-              path='/'
-              render={(rprops) => <MainSection 
-                        rprops={rprops}
-                        notes={notes}
-                      />}
-            />
-            <Route 
-              exact
-              path='/folder/:id'
-              render={(rprops) => <MainSection 
-                        rprops={rprops}
-                        notes={notes}
-                      />}
-            />
+            {this.renderMainSection(notes)}
             <Route 
               exact
               path='/folder/:id/note/:noteId'
