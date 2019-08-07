@@ -9,6 +9,11 @@ a, ul , li, form, fieldset, legend{
   margin: 0;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
 .flex-box-div{
   display: flex;
 }

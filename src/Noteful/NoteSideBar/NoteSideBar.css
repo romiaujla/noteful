@@ -1,0 +1,12 @@
+.NoteSideBar{
+    text-align: center;
+    padding: 10px;
+}
+.NoteSideBar .folder-name{
+    margin-top: 30px;
+}
+
+.NoteSideBar .folder-name h4{
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+}

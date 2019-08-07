@@ -5,6 +5,9 @@ import store from './store';
 import Header from './Noteful/Header/Header';
 import SideBar from './Noteful/SideBar/SideBar';
 import MainSection from './Noteful/MainSection/MainSection';
+import AddFolder from './Noteful/AddFolder/AddFolder';
+import Note from './Noteful/Note/Note';
+import NoteSideBar from './Noteful/NoteSideBar/NoteSideBar';
 
 export default class App extends React.Component {
 
@@ -16,33 +19,96 @@ export default class App extends React.Component {
     }
   }
 
+  // renders Main Side Bar for any of the below mentioned routes
+  renderSideBarRoutes = (folders) => {
+    const paths = [
+      '/',
+      '/folder/:id',
+    ]
+    const routes = paths.map((path, i) => {
+      return (
+        <Route 
+          key={i}
+          exact
+          path={path}
+          render={(rprops) => <SideBar 
+                                rprops={rprops}
+                                folders={folders}
+                              />}
+        />
+      )
+    });
+
+    return routes;
+  }
+
+
+  // renders the Side Bar with the Go Back Button 
+  renderGoBackSideBarRoutes = (folders) => {
+    const paths = [
+      '/folder/:id/note/:noteId',
+      '/add-folder'
+    ]
+
+    const routes = paths.map((path, i) => {
+      return (
+        <Route
+          key={i}
+          exact
+          path={path}
+          render={
+            (rprops) => 
+              <NoteSideBar
+                rprops={rprops}
+                folders={folders}
+              />
+          }
+        />
+      );
+    });
+
+    return routes;
+  }
+
   render(){
+
+    const {folders, notes} = this.state.data;
 
     return (
       <div className="App">
         <BrowserRouter>
           <Header />
           <div className='flex-box-div'>
+            {this.renderSideBarRoutes(folders)}
+            {this.renderGoBackSideBarRoutes(folders)}
             <Route 
+              exact
               path='/'
-              render={(rprops) => <SideBar 
-                                rprops={rprops}
-                                folders={this.state.data.folders} 
-                                currentFolder={this.state.currentFolder} />} 
+              render={(rprops) => <MainSection 
+                        rprops={rprops}
+                        notes={notes}
+                      />}
             />
             <Route 
               exact
               path='/folder/:id'
               render={(rprops) => <MainSection 
                         rprops={rprops}
-                        notes={this.state.data.notes}
-                        folders={this.state.data.folders}
+                        notes={notes}
                       />}
+            />
+            <Route 
+              exact
+              path='/folder/:id/note/:noteId'
+              render={(rprops) => <Note 
+                                    rprops={rprops}
+                                    notes={notes}
+                                  />}
             />
             <Route
               exact
-              path='/add-folder/'
-              render={() => <div className='Add-Folder'>to Add Folder</div>}
+              path='/add-folder'
+              render={() => <AddFolder />}
             />
           </div>
         </BrowserRouter>

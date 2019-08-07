@@ -19,9 +19,10 @@ export default class SideBar extends Component {
             return (
                 <Link 
                     to={linkPath}
+                    key={folder.id} 
                 >
                     <li 
-                        key={folder.id} 
+                        
                         className={(linkPath === selection)? 'selected': ''}
                     >
                         {folder.name}
@@ -35,7 +36,9 @@ export default class SideBar extends Component {
                 <ul>
                     {foldersListHtml}
                 </ul>
-                <button className='add-btn app-btn' type='button'>Add folder</button>
+                <Link to='/add-folder'>
+                    <button className='add-btn app-btn' type='button'>Add folder</button>
+                </Link>
             </aside>
         );
     }

@@ -1,34 +1,46 @@
 import React, {Component} from 'react';
 import './MainSection.css';
+import {Link} from 'react-router-dom';
 
 export default class MainSection extends Component {
 
     static defaultProps = {
         notes: [],
-        folders: [],
         rprops: {}
+    }
+
+    noteHTML = (note, link) => {
+        return (
+            <li 
+                key={note.id}
+            >
+                <Link to={link + '/note/'  + note.id}>
+                    <h3>{note.name}</h3>
+                </Link>
+                <div className='note-info'>
+                    <p>
+                        Date modified on {note.modified}
+                    </p>
+                    <button className='delete-btn app-btn' type='button'>Delete</button>
+                </div>
+            </li>
+        );
     }
 
     render(){
 
-        const {notes, folders, rprops} = this.props;
+        const {notes, rprops} = this.props;
 
         const notesHTML = notes.map((note) => {
-            // console.log(rprops.match.params.id);
-            // return 'this.props.rprops.params.id';
-            return ( (rprops.match.params.id === note.folderId) &&
-                <li 
-                    key={note.id}
-                >
-                    <h3>{note.name}</h3>
-                    <div className='note-info'>
-                        <p>
-                            Date modified on {note.modified}
-                        </p>
-                        <button className='delete-btn app-btn' type='button'>Delete</button>
-                    </div>
-                </li>
-            );
+            if(rprops.location.pathname !== '/'){
+                return ((rprops.match.params.id === note.folderId) &&
+                    this.noteHTML(note, rprops.location.pathname)
+                );
+            }else{
+                const link = '/folder/' + note.folderId;
+                return this.noteHTML(note, link);
+            }
+            
         });
 
         return (
