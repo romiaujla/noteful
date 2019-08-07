@@ -1,0 +1,28 @@
+.SideBar{
+    border-right: 3px solid black;
+    height: 89.5vh;
+    text-align: center;
+}
+
+.SideBar ul li{
+    padding: 15px 35px;
+    border: 1px solid black;
+    margin: 5px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.SideBar ul li:hover,
+.SideBar ul li:focus{
+    background: silver;
+    cursor: pointer;
+}
+
+.SideBar .add-btn{
+    margin: 20px auto;
+}
+
+.SideBar .selected{
+    background: lightblue;
+}

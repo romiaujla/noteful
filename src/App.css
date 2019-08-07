@@ -1,0 +1,28 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body, html, p, div, main, section, h1, h2, h3, h4, h5, h6,
+a, ul , li, form, fieldset, legend{
+  padding: 0;
+  margin: 0;
+}
+
+.flex-box-div{
+  display: flex;
+}
+
+.app-btn{
+  padding: 10px 35px;
+  background: white;
+  border: 1px solid black;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.app-btn:hover,
+.app-btn:focus{
+  background: silver;
+  cursor: pointer;
+}
