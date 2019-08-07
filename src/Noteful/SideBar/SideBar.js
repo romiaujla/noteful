@@ -14,8 +14,8 @@ export default class SideBar extends Component {
         const {folders, rprops} = this.props;
         const selection = rprops.location.pathname;
 
-        const foldersListHtml = folders.map((folder, index) => {
-            const linkPath = `/folder/${index}`
+        const foldersListHtml = folders.map((folder) => {
+            const linkPath = `/folder/${folder.id}`
             return (
                 <Link 
                     to={linkPath}

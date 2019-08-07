@@ -16,7 +16,7 @@ export default class MainSection extends Component {
         const notesHTML = notes.map((note) => {
             // console.log(rprops.match.params.id);
             // return 'this.props.rprops.params.id';
-            return ( (folders[rprops.match.params.id].id === note.folderId) &&
+            return ( (rprops.match.params.id === note.folderId) &&
                 <li 
                     key={note.id}
                 >
