@@ -9,12 +9,12 @@ export default class MainSection extends Component {
         rprops: {}
     }
 
-    noteHTML = (note, link) => {
+    noteHTML = (note) => {
         return (
             <li 
                 key={note.id}
             >
-                <Link to={link + '/note/'  + note.id}>
+                <Link to={'/note/'  + note.id}>
                     <h3>{note.name}</h3>
                 </Link>
                 <div className='note-info'>
@@ -34,11 +34,10 @@ export default class MainSection extends Component {
         const notesHTML = notes.map((note) => {
             if(rprops.location.pathname !== '/'){
                 return ((rprops.match.params.id === note.folderId) &&
-                    this.noteHTML(note, rprops.location.pathname)
+                    this.noteHTML(note)
                 );
             }else{
-                const link = '/folder/' + note.folderId;
-                return this.noteHTML(note, link);
+                return this.noteHTML(note);
             }
             
         });

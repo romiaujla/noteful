@@ -44,9 +44,9 @@ export default class App extends React.Component {
 
 
   // renders the Side Bar with the Go Back Button 
-  renderGoBackSideBarRoutes = (folders) => {
+  renderGoBackSideBarRoutes = (folders, notes) => {
     const paths = [
-      '/folder/:id/note/:noteId',
+      '/note/:noteId',
       '/add-folder'
     ]
 
@@ -61,6 +61,7 @@ export default class App extends React.Component {
               <NoteSideBar
                 rprops={rprops}
                 folders={folders}
+                notes={notes}
               />
           }
         />
@@ -108,11 +109,11 @@ export default class App extends React.Component {
           <Header />
           <div className='flex-box-div'>
             {this.renderSideBarRoutes(folders)}
-            {this.renderGoBackSideBarRoutes(folders)}
+            {this.renderGoBackSideBarRoutes(folders, notes)}
             {this.renderMainSection(notes)}
             <Route 
               exact
-              path='/folder/:id/note/:noteId'
+              path='/note/:noteId'
               render={(rprops) => <Note 
                                     rprops={rprops}
                                     notes={notes}

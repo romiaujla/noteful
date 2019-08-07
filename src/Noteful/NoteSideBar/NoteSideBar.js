@@ -5,25 +5,24 @@ export default class NoteSideBar extends Component {
     
     static defaultProps = {
         folders: [],
+        notes: [],
         rprops: {}
     }
 
     render(){    
-
-        const folderId = this.props.rprops.match.params.id;
         const {history} = this.props.rprops;
-        const folderName = this.props.folders.map((folder) => {
-            let name = '';
-            if(folder.id === folderId){
-                name = folder.name;
-            }
-            return name;
-        });
-
+        let folderName = '';
+        const noteId = this.props.rprops.match.params.noteId;
+        
+        if(noteId !== undefined){
+            const note = this.props.notes.filter((note) => note.id === noteId)[0];
+            folderName = this.props.folders.filter((folder) => folder.id === note.folderId)[0].name;
+        }
+        
         return(
             <div className='NoteSideBar'>
                 <button className='go-back-btn app-btn' onClick={() => {history.goBack()}}>Go Back</button>
-                {this.props.rprops.location.pathname !== '/add-folder' && 
+                {folderName && 
                     (
                         <div className='folder-name'>
                             <h4 className=''>Current Folder</h4>
