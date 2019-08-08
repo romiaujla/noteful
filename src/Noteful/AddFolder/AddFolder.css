@@ -1,11 +1,3 @@
 .AddFolder form{
     padding: 30px;
 }
-.AddFolder form input[type='text']{
-    padding: 5px;
-    color: black;
-    width: 100%;
-    max-width: 500px;
-    font-size: 1em;
-    margin: 10px 0px;
-}

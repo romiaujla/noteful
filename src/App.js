@@ -6,6 +6,7 @@ import Header from './Noteful/Header/Header';
 import SideBar from './Noteful/SideBar/SideBar';
 import MainSection from './Noteful/MainSection/MainSection';
 import AddFolder from './Noteful/AddFolder/AddFolder';
+import AddNote from './Noteful/AddNote/AddNote';
 import Note from './Noteful/Note/Note';
 import NoteSideBar from './Noteful/NoteSideBar/NoteSideBar';
 
@@ -14,8 +15,7 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: store,
-      currentFolder: 2
+      data: store
     }
   }
 
@@ -47,7 +47,8 @@ export default class App extends React.Component {
   renderGoBackSideBarRoutes = (folders, notes) => {
     const paths = [
       '/note/:noteId',
-      '/add-folder'
+      '/add-folder',
+      '/add-note'
     ]
 
     const routes = paths.map((path, i) => {
@@ -71,6 +72,7 @@ export default class App extends React.Component {
     return routes;
   }
 
+  // Renders the Sections that displays Notes
   renderMainSection = (notes) => {
 
     const paths = [
@@ -94,11 +96,10 @@ export default class App extends React.Component {
         />
       );
     });
-
     return routes;
-
   }
 
+  // Main Render Method
   render(){
 
     const {folders, notes} = this.state.data;
@@ -108,9 +109,11 @@ export default class App extends React.Component {
         <BrowserRouter>
           <Header />
           <div className='flex-box-div'>
+
             {this.renderSideBarRoutes(folders)}
             {this.renderGoBackSideBarRoutes(folders, notes)}
             {this.renderMainSection(notes)}
+            
             <Route 
               exact
               path='/note/:noteId'
@@ -119,11 +122,19 @@ export default class App extends React.Component {
                                     notes={notes}
                                   />}
             />
+
             <Route
               exact
               path='/add-folder'
               render={() => <AddFolder />}
             />
+
+            <Route 
+              exact
+              path='/add-note'
+              render={() => <AddNote />}
+            />
+
           </div>
         </BrowserRouter>
       </div>

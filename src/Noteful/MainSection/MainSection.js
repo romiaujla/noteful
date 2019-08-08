@@ -47,7 +47,9 @@ export default class MainSection extends Component {
                 <ul>
                     {notesHTML}
                 </ul>
-                <button className='add-note-btn app-btn' type='button'>Add Note</button>
+                <Link to='/add-note'>
+                    <button className='add-note-btn app-btn' type='button'>Add Note</button>
+                </Link>
             </section>
         );
     }

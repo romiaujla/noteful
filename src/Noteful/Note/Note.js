@@ -12,8 +12,9 @@ export default class Note extends Component{
 
         const {rprops, notes} = this.props;
         const noteId = rprops.match.params.noteId; 
-        let note = notes.filter(note => note.id === noteId);
-        note = note[0];
+
+        // If there is a better way for this
+        let note = notes.filter(note => note.id === noteId)[0];
 
         return(
             <div className='Note'>

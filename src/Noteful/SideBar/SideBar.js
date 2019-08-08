@@ -21,10 +21,7 @@ export default class SideBar extends Component {
                     to={linkPath}
                     key={folder.id} 
                 >
-                    <li 
-                        
-                        className={(linkPath === selection)? 'selected': ''}
-                    >
+                    <li className={(linkPath === selection)? 'selected': ''}>
                         {folder.name}
                     </li>
                 </Link>

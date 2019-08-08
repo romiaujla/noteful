@@ -1,3 +1,17 @@
+.AddNote{
+    flex: 2;
+}
 .AddNote form{
-    padding: 30px;
+    padding: 0px 20px;
+}
+
+.AddNote form p{
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.AddNote form select{
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
