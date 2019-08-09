@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './MainSection.css';
 import {Link} from 'react-router-dom';
+import NotefulContext from '../../NotefulContext';
 
 export default class MainSection extends Component {
 
@@ -8,6 +9,8 @@ export default class MainSection extends Component {
         notes: [],
         rprops: {}
     }
+
+    static contextType = NotefulContext;
 
     noteHTML = (note) => {
         return (
@@ -29,7 +32,8 @@ export default class MainSection extends Component {
 
     render(){
 
-        const {notes, rprops} = this.props;
+        const {rprops} = this.props;
+        const {notes} = this.context.data;
 
         const notesHTML = notes.map((note) => {
             if(rprops.location.pathname !== '/'){
