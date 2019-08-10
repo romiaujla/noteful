@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import './NoteSideBar.css';
+import NotefulContext from '../../NotefulContext';
 
 export default class NoteSideBar extends Component {
     
     static defaultProps = {
-        folders: [],
-        notes: [],
         rprops: {}
     }
 
+    static contextType = NotefulContext;
+
     render(){    
         const {history} = this.props.rprops;
+        const {folders, notes} = this.context.data;
         let folderName = '';
         const noteId = this.props.rprops.match.params.noteId;
         
@@ -18,11 +20,8 @@ export default class NoteSideBar extends Component {
         // the url has the noteId, which indicates that a note is open
         // other case is to use the same side bar when add-folder component is used. 
         if(noteId !== undefined){
-            const note = this.props.notes
-                            .filter((note) => note.id === noteId)[0];
-            
-            folderName = this.props.folders
-                            .filter((folder) => folder.id === note.folderId)[0].name;
+            const note = notes.find((note) => note.id === noteId);
+            folderName = folders.find((folder) => folder.id === note.folderId).name;
         }
         
         return(

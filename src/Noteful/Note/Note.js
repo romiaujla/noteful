@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import './Note.css';
+import NotefulContext from '../../NotefulContext';
 
 export default class Note extends Component{
     
     static defaultProps = {
         rprops: {},
-        notes: []
     }
+
+    static contextType = NotefulContext;
 
     render(){
 
-        const {rprops, notes} = this.props;
+        const {rprops} = this.props;
+        const {notes} = this.context.data;
         const noteId = rprops.match.params.noteId; 
 
-        
         let note = notes.find(note => note.id === noteId);
 
         return(

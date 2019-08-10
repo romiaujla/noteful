@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import './SideBar.css';
 import {Link} from 'react-router-dom';
+import NotefulContext from '../../NotefulContext';
 
 export default class SideBar extends Component {
     
     static defaultProps = {
-        folders: [],
         rprops: {}
     }
 
+    static contextType = NotefulContext;
+
     render(){
 
-        const {folders, rprops} = this.props;
+        const {rprops} = this.props;
+        const {folders} = this.context.data;
         const selection = rprops.location.pathname;
 
         const foldersListHtml = folders.map((folder) => {
